@@ -1,0 +1,31 @@
+extends layouts/login-layout.pug 
+
+block content
+    script(src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js', integrity='sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz', crossorigin='anonymous')
+    script(src='https://code.jquery.com/jquery-3.7.1.min.js', integrity='sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=', crossorigin='anonymous')
+    .loginContainer 
+        h1 Register  
+        form#registerForm(method="post", onsubmit="event.preventDefault(); validatePassword();")
+            input(type="text", name="firstName", placeholder="First Name",value=firstName required="")
+            input(type="text", name="lastName", placeholder="Last Name", value=lastName,required="")
+            input(type="text", name="username", placeholder="Username", value=username, required="")
+            input(type="email", name="email", placeholder="Email", value=email, required="")
+            input#password(type="password", name="password", placeholder="Password", required="")
+            input#passwordConf(type="password", name="passwordConf", placeholder="Confirm Password", required="")
+            input(type="submit", value="Register")
+        a(href="/login") Already have an account? Login Here
+
+    script.       
+        var passwordField = document.getElementById("password")
+        var passwordConfField = document.getElementById("passwordConf");
+        var registerForm = document.getElementById("registerForm");
+
+        console.log(passwordField, passwordConfField)
+
+        function validatePassword(){
+            if(passwordField.value != passwordConfField.value) {
+                passwordConf.setCustomValidity("Passwords Don't Match");
+            } else {
+                registerForm.submit();
+            }
+        }

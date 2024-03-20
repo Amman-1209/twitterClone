@@ -1,0 +1,13 @@
+const express = require('express');
+const app = express();
+
+const router = express.Router();
+
+app.set('view engine', 'pug');
+app.set('views', 'views');
+
+router.get('/', (req, res) => {
+    res.status(200).render('login'); // Assuming you have a login page template
+});
+
+module.exports = router;
