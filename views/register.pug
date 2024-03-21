@@ -6,7 +6,10 @@ block content
     .loginContainer 
         h1 Register  
         form#registerForm(method="post", onsubmit="event.preventDefault(); validatePassword();")
-            input(type="text", name="firstName", placeholder="First Name",value=firstName required="")
+
+            p.errorMessage #{errorMessage}
+
+            input(type="text", name="firstName", placeholder="First Name",value=firstName, required="")
             input(type="text", name="lastName", placeholder="Last Name", value=lastName,required="")
             input(type="text", name="username", placeholder="Username", value=username, required="")
             input(type="email", name="email", placeholder="Email", value=email, required="")
@@ -15,12 +18,10 @@ block content
             input(type="submit", value="Register")
         a(href="/login") Already have an account? Login Here
 
-    script.       
+    script.
         var passwordField = document.getElementById("password")
         var passwordConfField = document.getElementById("passwordConf");
         var registerForm = document.getElementById("registerForm");
-
-        console.log(passwordField, passwordConfField)
 
         function validatePassword(){
             if(passwordField.value != passwordConfField.value) {
