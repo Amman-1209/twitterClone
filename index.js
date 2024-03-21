@@ -3,6 +3,11 @@ const express = require('express');
 const app = express();
 const middleware = require('./middleware');
 const path = require('path');
+const mongoose = require('mongoose');
+
+mongoose.connect('mongodb+srv://badyalaman23:root@twitterclonecluster.26tb8lu.mongodb.net?retryWrites=true&w=majority&appName=TwitterCloneCluster')
+.then(() => console.log('Connected to MongoDB'))
+.catch(e => console.log('Error connecting to MongoDB', e) );
 
 app.set('view engine', 'pug');
 app.set('views', 'views');
