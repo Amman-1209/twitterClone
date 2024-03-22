@@ -1,7 +1,8 @@
 const express = require('express');
 const app = express();
-const User = require('../schema/userSchema');
 const bcrypt = require('bcrypt');
+const User = require('../schema/userSchema');
+
 
 const router = express.Router();
 
@@ -42,7 +43,8 @@ router.post('/', async (req, res) => {
             data.password = await bcrypt.hash(password, 10);
             User.create(data)
             .then((user) => {
-                console.log(user);
+                req.session.user = user;
+                return res.redirect('/');
             })
             // no user found
         } else {
